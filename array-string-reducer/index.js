@@ -12,5 +12,5 @@ const stringSort = (a, b) => {
 module.exports = (str) => {
   const arr = str.split('');
   const reduced = arr.reduce(stringReducer, []);
-  return reduced.sort(stringSort).join(' ');
+  return reduced.sort(stringSort).join('');
 };

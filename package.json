@@ -4,19 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/jest-cli/bin/jest.js"
   },
   "keywords": [],
   "author": "Eugene Brodsky <fupslot@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "babel-eslint": "^6.1.2",
-    "babel-preset-react": "^6.11.1",
-    "eslint": "^3.4.0",
-    "eslint-plugin-react": "^6.2.0",
-    "eslint-rules": "^0.4.3",
-    "fbjs": "^0.8.4",
-    "fbjs-scripts": "^0.7.1",
-    "eslint-plugin-react-internal": "file:eslint-rules"
+    "babel-eslint": "~6.1.2",
+    "babel-jest": "~15.0.0",
+    "babel-preset-react": "~6.11.1",
+    "eslint": "~3.4.0",
+    "eslint-plugin-react": "~6.2.0",
+    "eslint-plugin-react-internal": "file:eslint-rules",
+    "eslint-rules": "~0.4.3",
+    "fbjs": "~0.8.4",
+    "fbjs-scripts": "~0.7.1",
+    "jest-cli": "~15.1.1"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest"
   }
 }
