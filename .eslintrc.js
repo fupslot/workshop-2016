@@ -21,7 +21,7 @@ module.exports = {
   rules: {
     'accessor-pairs': OFF,
     'brace-style': [ERROR, '1tbs'],
-    'comma-dangle': [ERROR, 'always-multiline'],
+    'comma-dangle': [OFF, 'always-multiline'],
     'consistent-return': ERROR,
     'dot-location': [ERROR, 'property'],
     'dot-notation': ERROR,
