@@ -75,4 +75,17 @@ describe('days-array', function() {
     expect(lib.dayTableRightPadSize(2016, 10)).toEqual(3); // Nov 1 2016
     expect(lib.dayTableRightPadSize(2016, 11)).toEqual(0); // Dec 1 2016
   });
+
+  it('should return previous month', function() {
+    const date = lib.previousMonth(2016, 0);
+    expect(date instanceof Date).toBeTruthy();
+    expect(date.getMonth()).toEqual(11);
+    expect(date.getFullYear()).toEqual(2015);
+  });
+
+  it('should return days array', function() {
+    const days = lib.daysArray(2016, 0);
+    expect(Array.isArray(days)).toBeTruthy();
+    expect(days.length).toEqual(lib.dayTableSize(2016, 0));
+  });
 });
