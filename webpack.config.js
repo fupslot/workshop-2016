@@ -10,9 +10,9 @@ module.exports = {
   context: __dirname,
 
   entry: [
-    './index.js'
-    // 'webpack/hot/dev-server',
-    // 'webpack-dev-server/client?http://localhost:8080/'
+    './index.js',
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8080/'
   ],
 
   output: {

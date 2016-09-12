@@ -65,7 +65,7 @@ module.exports = {
     // We don't care to do this
     'react/sort-comp': OFF,
     'react/wrap-multilines': [ERROR, {declaration: false, assignment: false}],
-
+    'react/jsx-handler-names': WARNING,
     // CUSTOM RULES
     // the second argument of warning/invariant should be a literal string
     'react-internal/warning-and-invariant-args': ERROR,
