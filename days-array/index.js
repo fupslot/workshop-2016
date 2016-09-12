@@ -21,25 +21,25 @@ function weekDayOf1st(year, month) {
 }
 
 
-function paddedDaysArrayOfMonth(year, month) {
-  // 1. how many days in the current month
-  // 2. which day of the week is the 1st
-  const daysCount = daysInMonth(year, month); // 31
-  // console.log('daysCount', daysCount);
-  let padLeft = weekDayOf1st(year, month);
-  // console.log('padLeft', padLeft);
-
-  let padRight = (daysCount + padLeft) % 7;
-  // console.log('padRight', (daysCount + padLeft));
-  if (padRight !== 0) {
-    padRight = 7 - padRight;
-  }
+function dayTableSize(year, month) {
+  const daysCount = daysInMonth(year, month);
+  const padLeft = dayTableLeftPadSize(year, month);
+  const padRight = dayTableRightPadSize(year, month);
   return daysCount + padLeft + padRight;
 }
 
+function dayTableLeftPadSize(year, month) {
+  return weekDayOf1st(year, month);
+}
+
+function dayTableRightPadSize(year, month) {
+  return 7 - (new Date(year, month + 1, 0).getDay() + 1);
+}
 
 module.exports = {
   daysInMonth,
   weekDayOf1st,
-  paddedDaysArrayOfMonth
+  dayTableSize,
+  dayTableLeftPadSize,
+  dayTableRightPadSize
 };
