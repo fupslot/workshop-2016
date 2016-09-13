@@ -88,4 +88,17 @@ describe('days-array', function() {
     expect(Array.isArray(days)).toBeTruthy();
     expect(days.length).toEqual(lib.dayTableSize(2016, 0));
   });
+
+  it('should return first day of date', function() {
+    function firstDayOfWeek(date) {
+      const copyDate = new Date(date.getTime());
+      const day = copyDate.getDay();
+      const diff = copyDate.getDate() - day + (day === 0 ? -6 : 0); // 0 - sunday, 1 - monday
+      copyDate.setDate(diff);
+      return copyDate;
+    }
+
+    expect(firstDayOfWeek(new Date(2016, 0, 1)).getDate()).toEqual(27);
+    expect(firstDayOfWeek(new Date(2016, 0, 6)).getDate()).toEqual(3);
+  });
 });
