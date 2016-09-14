@@ -101,16 +101,14 @@ describe('days-array', function() {
 
   it('should return last day of specified week', function() {
     lib.startWeekWith(lib.SUNDAY);
-    expect(lib.lastDayOfWeek(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 2));
-    expect(lib.lastDayOfWeek(new Date(2016, 11, 1))).toEqual(new Date(2016, 11, 3));
-    expect(lib.lastDayOfWeek(new Date(2016, 11, 30))).toEqual(new Date(2016, 11, 31));
-    expect(lib.lastDayOfWeek(new Date(2016, 1, 29))).toEqual(new Date(2016, 2, 5));
-    expect(lib.lastDayOfWeek(new Date(2016, 6, 31))).toEqual(new Date(2016, 7, 6));
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 17))).toEqual(new Date(2016, 0, 23));
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 19))).toEqual(new Date(2016, 0, 23));
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 23))).toEqual(new Date(2016, 0, 23));
 
     lib.startWeekWith(lib.MONDAY);
-    expect(lib.lastDayOfWeek(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 3));
-    expect(lib.lastDayOfWeek(new Date(2016, 11, 1))).toEqual(new Date(2016, 11, 4));
-    expect(lib.lastDayOfWeek(new Date(2016, 11, 30))).toEqual(new Date(2017, 0, 1));
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 18))).toEqual(new Date(2016, 0, 24));
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 20))).toEqual(new Date(2016, 0, 24));
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 24))).toEqual(new Date(2016, 0, 24));
   });
 
 
