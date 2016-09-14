@@ -22,6 +22,14 @@ function daysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
 }
 
+function daysInMonthD(date) {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
+}
+
 /**
  * weekDayOf1st
  * Returns a day of a week on the 1s in specified month (0 - based)
@@ -79,11 +87,44 @@ function daysArray(year, month) {
   return days;
 }
 
+function nextDayD(date) {
+  const copy = copyDate(date);
+  copy.setDate(copy.getDate() + 1);
+  return copy;
+}
+
+function daysArrayD(date) {
+  console.log(date.toLocaleDateString());
+  const first = firstDayOfWeek(date);
+  console.log(first.toLocaleDateString());
+  const last = lastDayOfMonth(date);
+  console.log(last.toLocaleDateString());
+  console.log(lastDayOfWeek(last).toLocaleDateString());
+  // console.log(last);
+  // const days = (last - first) / (24 * 60 * 60 * 1000);
+  // const arr = Array(days);
+  // arr[0] = first;
+  // arr[arr.length - 1] = last;
+  //
+  // for (var i = 1; i < days - 1; i++) {
+  //   arr[i] = nextDayD(first);
+  // }
+  //
+  // return arr;
+}
+
+function lastDayOfMonth(date) {
+  const copy = copyDate(date);
+  copy.setDate(daysInMonthD(date));
+  return copy;
+}
+
 function firstDayOfWeek(date) {
   const curr = copyDate(date);
   const day = curr.getDay();
   // startWeekWith (0 - sunday; 1 - monday;)
-  const diff = curr.getDate() - day + (day === 0 ? -6 : _startWeekWith);
+  const shift = _startWeekWith === MONDAY ? (day === 0 ? -6 : 1) : 0;
+  const diff = curr.getDate() - day + shift;
   curr.setDate(diff);
   return curr;
 }
@@ -102,11 +143,14 @@ function lastDayOfWeek(date) {
 module.exports = {
   previousMonth,
   daysInMonth,
+  daysInMonthD,
   weekDayOf1st,
+  lastDayOfMonth,
   dayTableSize,
   dayTableLeftPadSize,
   dayTableRightPadSize,
   daysArray,
+  daysArrayD,
   firstDayOfWeek,
   lastDayOfWeek,
   startWeekWith,
