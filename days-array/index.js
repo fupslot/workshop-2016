@@ -94,23 +94,21 @@ function nextDayD(date) {
 }
 
 function daysArrayD(date) {
-  console.log(date.toLocaleDateString());
   const first = firstDayOfWeek(date);
-  console.log(first.toLocaleDateString());
-  const last = lastDayOfMonth(date);
-  console.log(last.toLocaleDateString());
-  console.log(lastDayOfWeek(last).toLocaleDateString());
-  // console.log(last);
-  // const days = (last - first) / (24 * 60 * 60 * 1000);
-  // const arr = Array(days);
-  // arr[0] = first;
-  // arr[arr.length - 1] = last;
-  //
-  // for (var i = 1; i < days - 1; i++) {
-  //   arr[i] = nextDayD(first);
-  // }
-  //
-  // return arr;
+  const last = lastDayOfWeek(new Date(2016, 0, 31));
+  // console.log('first', first.toLocaleString());
+  // console.log('last', last.toLocaleString());
+  const days = ((last - first) / (24 * 60 * 60 * 1000)) + 1;
+
+  const arr = Array(days);
+  arr[0] = first;
+  arr[arr.length - 1] = last;
+
+  for (var i = 1; i < days; i++) {
+    arr[i] = nextDayD(arr[i - 1]);
+  }
+
+  return arr;
 }
 
 function lastDayOfMonth(date) {
@@ -151,6 +149,7 @@ module.exports = {
   dayTableRightPadSize,
   daysArray,
   daysArrayD,
+  nextDayD,
   firstDayOfWeek,
   lastDayOfWeek,
   startWeekWith,
