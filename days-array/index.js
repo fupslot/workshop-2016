@@ -1,3 +1,16 @@
+const SUNDAY = 0;
+const MONDAY = 1;
+
+let _startWeekWith = SUNDAY;
+
+function startWeekWith(day) {
+  _startWeekWith = day === SUNDAY ? SUNDAY : MONDAY;
+}
+
+function createDate(y=1900, m=1, d=0, h=0, min=0, sec=0, msec=0) {
+  return new Date(Date.UTC(y, m, d, h, min, sec, msec));
+}
+
 /**
  * daysInMonth
  * Returns number of days in a specified month
@@ -66,6 +79,25 @@ function daysArray(year, month) {
   return days;
 }
 
+function firstDayOfWeek(date) {
+  const curr = copyDate(date);
+  const day = curr.getDay();
+  // startWeekWith (0 - sunday; 1 - monday;)
+  const diff = curr.getDate() - day + (day === 0 ? -6 : _startWeekWith);
+  curr.setDate(diff);
+  return curr;
+}
+
+function copyDate(date) {
+  return new Date(date.getTime());
+}
+
+function lastDayOfWeek(date) {
+  const first = firstDayOfWeek(date);
+  first.setDate(first.getDate() + 6);
+  return first;
+}
+
 
 module.exports = {
   previousMonth,
@@ -74,5 +106,11 @@ module.exports = {
   dayTableSize,
   dayTableLeftPadSize,
   dayTableRightPadSize,
-  daysArray
+  daysArray,
+  firstDayOfWeek,
+  lastDayOfWeek,
+  startWeekWith,
+  createDate,
+  SUNDAY,
+  MONDAY
 };

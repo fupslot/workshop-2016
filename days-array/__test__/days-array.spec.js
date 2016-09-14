@@ -90,15 +90,24 @@ describe('days-array', function() {
   });
 
   it('should return first day of date', function() {
-    function firstDayOfWeek(date) {
-      const copyDate = new Date(date.getTime());
-      const day = copyDate.getDay();
-      const diff = copyDate.getDate() - day + (day === 0 ? -6 : 0); // 0 - sunday, 1 - monday
-      copyDate.setDate(diff);
-      return copyDate;
-    }
+    lib.startWeekWith(lib.SUNDAY);
+    expect(lib.firstDayOfWeek(new Date(2016, 0, 1))).toEqual(new Date(2015, 11, 27));
+    expect(lib.firstDayOfWeek(new Date(2016, 3, 9))).toEqual(new Date(2016, 3, 3));
 
-    expect(firstDayOfWeek(new Date(2016, 0, 1)).getDate()).toEqual(27);
-    expect(firstDayOfWeek(new Date(2016, 0, 6)).getDate()).toEqual(3);
+    lib.startWeekWith(lib.MONDAY);
+    expect(lib.firstDayOfWeek(new Date(2016, 0, 1))).toEqual(new Date(2015, 11, 28));
+    expect(lib.firstDayOfWeek(new Date(2016, 0, 6))).toEqual(new Date(2016, 0, 4));
+  });
+
+  it('should return last day of specified week', function() {
+    lib.startWeekWith(lib.SUNDAY);
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 2));
+    expect(lib.lastDayOfWeek(new Date(2016, 11, 1))).toEqual(new Date(2016, 11, 3));
+    expect(lib.lastDayOfWeek(new Date(2016, 11, 30))).toEqual(new Date(2016, 11, 31));
+
+    lib.startWeekWith(lib.MONDAY);
+    expect(lib.lastDayOfWeek(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 3));
+    expect(lib.lastDayOfWeek(new Date(2016, 11, 1))).toEqual(new Date(2016, 11, 4));
+    expect(lib.lastDayOfWeek(new Date(2016, 11, 30))).toEqual(new Date(2017, 0, 1));
   });
 });
