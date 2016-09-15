@@ -55,7 +55,7 @@ function nextDay(date) {
 
 function daysArray(date) {
   const first = firstDayOfWeek(date);
-  const last = lastDayOfWeek(new Date(2016, 0, 31));
+  const last = lastDayOfWeek(lastDayOfMonth(date));
   const dayMS = 24 * 60 * 60 * 1000;
   const days = ((last - first) / dayMS) + 1;
 

@@ -58,7 +58,7 @@ describe('days-array', function() {
     expect(days.length).toEqual(42);
 
     lib.startWeekWith(lib.MONDAY);
-    days = lib.daysArray(new Date(2016, 0, 1));
+    days = lib.daysArray(new Date(2016, 6, 1));
     expect(Array.isArray(days)).toBeTruthy();
     expect(days.length).toEqual(35);
   });
