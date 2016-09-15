@@ -23,7 +23,7 @@ function daysInMonth(date) {
 
 /**
  * previousMonth
- * Returns previuos month of a given date
+ * Returns a previuos month of a given date
  * @param  {date} date Date
  * @return {date}
  */
@@ -55,7 +55,7 @@ function nextDay(date) {
 
 /**
  * firstDateOfMonth
- * Returns the first date of a given month
+ * Returns a first date of a given month
  * @param  {date} date Date
  * @return {date}
  */
@@ -67,7 +67,7 @@ function firstDateOfMonth(date) {
 
 /**
  * lastDateOfMonth
- * Returns the last day of a given month
+ * Returns a last date of a given month
  * @param  {date} date Date
  * @return {date}
  */
