@@ -1,6 +1,10 @@
 const lib = require('../');
 
 describe('days-array', function() {
+  beforeEach(function() {
+    lib.startWeekWith(lib.SUNDAY);
+  });
+
   it('should get an amount days in the given month', function() {
     expect(lib.daysInMonth(new Date(2016, 0, 1))).toEqual(31);
     expect(lib.daysInMonth(new Date(2016, 1, 1))).toEqual(29);
@@ -54,7 +58,64 @@ describe('days-array', function() {
   });
 
   it('should return next day', function() {
+    lib.startWeekWith(lib.MONDAY);
     expect(lib.nextDay(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 2));
     expect(lib.nextDay(new Date(2016, 0, 2))).toEqual(new Date(2016, 0, 3));
+  });
+
+  it('should return last date of last week month (sunday)', function() {
+    lib.startWeekWith(lib.SUNDAY);
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 2, 31))
+      )
+    ).toEqual(new Date(2016, 3, 2));
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 2, 1))
+      )
+    ).toEqual(new Date(2016, 3, 2));
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 2, 19))
+      )
+    ).toEqual(new Date(2016, 3, 2));
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 3, 1))
+      )
+    ).toEqual(new Date(2016, 3, 30));
+  });
+
+  it('should return last date of last week month (monday)', function() {
+    lib.startWeekWith(lib.MONDAY);
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 2, 31))
+      )
+    ).toEqual(new Date(2016, 3, 3));
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 2, 1))
+      )
+    ).toEqual(new Date(2016, 3, 3));
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 2, 19))
+      )
+    ).toEqual(new Date(2016, 3, 3));
+
+    expect(
+      lib.lastDayOfWeek(
+        lib.lastDayOfMonth(new Date(2016, 3, 1))
+      )
+    ).toEqual(new Date(2016, 4, 1));
   });
 });
