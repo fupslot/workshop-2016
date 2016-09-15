@@ -7,22 +7,13 @@ function startWeekWith(day) {
   _startWeekWith = day === SUNDAY ? SUNDAY : MONDAY;
 }
 
-function createDate(y=1900, m=1, d=0, h=0, min=0, sec=0, msec=0) {
-  return new Date(Date.UTC(y, m, d, h, min, sec, msec));
-}
-
 /**
  * daysInMonth
  * Returns number of days in a specified month
- * @param  {number} year  Year
- * @param  {number} month Month
+ * @param  {date} date  Date
  * @return {number}
  */
-function daysInMonth(year, month) {
-  return new Date(year, month + 1, 0).getDate();
-}
-
-function daysInMonthD(date) {
+function daysInMonth(date) {
   return new Date(
     date.getFullYear(),
     date.getMonth() + 1,
@@ -31,92 +22,72 @@ function daysInMonthD(date) {
 }
 
 /**
- * weekDayOf1st
- * Returns a day of a week on the 1s in specified month (0 - based)
- * @param  {number} year  Year
- * @param  {number} month Month
- * @return {number}
+ * previousMonth
+ * Returns previuos month of a given date
+ * @param  {date} date Date
+ * @return {date}
  */
-function weekDayOf1st(year, month) {
-  return new Date(year, month, 1).getDay();
-}
+function previousMonth(date) {
+  const prev = copyDate(date);
+  prev.setDate(1);
+  prev.setMonth(prev.getMonth() - 1);
 
-
-function dayTableSize(year, month) {
-  const daysCount = daysInMonth(year, month);
-  const padLeft = dayTableLeftPadSize(year, month);
-  const padRight = dayTableRightPadSize(year, month);
-  return daysCount + padLeft + padRight;
-}
-
-function dayTableLeftPadSize(year, month) {
-  return weekDayOf1st(year, month);
-}
-
-function dayTableRightPadSize(year, month) {
-  return 7 - (new Date(year, month + 1, 0).getDay() + 1);
-}
-
-function previousMonth(year, month) {
-  const date = new Date(year, month, 1);
-  date.setMonth(date.getMonth() - 1);
-  return date;
-}
-
-function daysArray(year, month) {
-  const daysCount = daysInMonth(year, month);
-  const prevMonth = previousMonth(year, month);
-  const daysInCurrMonth = daysInMonth(year, month);
-  const daysInPrevMonth = daysInMonth(
-    prevMonth.getFullYear(),
-    prevMonth.getMonth()
-  );
-
-  const days = [];
-  let i = -dayTableLeftPadSize(year, month);
-  const l = daysCount + dayTableRightPadSize(year, month);
-  for (; i < l; i++) {
-    if ( i <= 0) {
-      days.push(daysInPrevMonth + i);
-    } else if (i > daysInCurrMonth) {
-      days.push(i - daysInCurrMonth);
-    } else {
-      days.push(i);
-    }
+  const daysInPrevMonth = daysInMonth(prev);
+  let currDate = date.getDate();
+  if (daysInPrevMonth < currDate) {
+    currDate = daysInPrevMonth;
   }
-  return days;
+  prev.setDate(currDate);
+  return prev;
 }
 
-function nextDayD(date) {
+/**
+ * nextDay
+ * Returns a next day of a given date
+ * @param  {date} date Date
+ * @return {date}
+ */
+function nextDay(date) {
   const copy = copyDate(date);
   copy.setDate(copy.getDate() + 1);
   return copy;
 }
 
-function daysArrayD(date) {
+function daysArray(date) {
   const first = firstDayOfWeek(date);
   const last = lastDayOfWeek(new Date(2016, 0, 31));
-  // console.log('first', first.toLocaleString());
-  // console.log('last', last.toLocaleString());
-  const days = ((last - first) / (24 * 60 * 60 * 1000)) + 1;
+  const dayMS = 24 * 60 * 60 * 1000;
+  const days = ((last - first) / dayMS) + 1;
 
   const arr = Array(days);
   arr[0] = first;
   arr[arr.length - 1] = last;
 
   for (var i = 1; i < days; i++) {
-    arr[i] = nextDayD(arr[i - 1]);
+    arr[i] = nextDay(arr[i - 1]);
   }
 
   return arr;
 }
 
+/**
+ * lastDayOfMonth
+ * Returns the last day of a given month
+ * @param  {date} date Date
+ * @return {date}
+ */
 function lastDayOfMonth(date) {
   const copy = copyDate(date);
-  copy.setDate(daysInMonthD(date));
+  copy.setDate(daysInMonth(date));
   return copy;
 }
 
+/**
+ * firstDayOfWeek
+ * Returns a first day of a given week
+ * @param  {date} date Date
+ * @return {date}
+ */
 function firstDayOfWeek(date) {
   const curr = copyDate(date);
   const day = curr.getDay();
@@ -127,33 +98,38 @@ function firstDayOfWeek(date) {
   return curr;
 }
 
-function copyDate(date) {
-  return new Date(date.getTime());
-}
-
+/**
+ * lastDayOfWeek
+ * Returns a last day of a given week
+ * @param  {date} date Date
+ * @return {date}
+ */
 function lastDayOfWeek(date) {
   const first = firstDayOfWeek(date);
   first.setDate(first.getDate() + 6);
   return first;
 }
 
+/*
+ * copyDate
+ * Return a copy of a given date object
+ * @param  {date} date Date
+ * @return {date}
+ */
+function copyDate(date) {
+  return new Date(date.getTime());
+}
+
 
 module.exports = {
   previousMonth,
   daysInMonth,
-  daysInMonthD,
-  weekDayOf1st,
   lastDayOfMonth,
-  dayTableSize,
-  dayTableLeftPadSize,
-  dayTableRightPadSize,
   daysArray,
-  daysArrayD,
-  nextDayD,
+  nextDay,
   firstDayOfWeek,
   lastDayOfWeek,
   startWeekWith,
-  createDate,
   SUNDAY,
   MONDAY
 };
