@@ -54,24 +54,24 @@ function nextDay(date) {
 }
 
 /**
- * firstDayOfMonth
+ * firstDateOfMonth
  * Returns the first date of a given month
  * @param  {date} date Date
  * @return {date}
  */
-function firstDayOfMonth(date) {
+function firstDateOfMonth(date) {
   const first = copyDate(date);
   first.setDate(1);
   return first;
 }
 
 /**
- * lastDayOfMonth
+ * lastDateOfMonth
  * Returns the last day of a given month
  * @param  {date} date Date
  * @return {date}
  */
-function lastDayOfMonth(date) {
+function lastDateOfMonth(date) {
   const copy = copyDate(date);
   copy.setDate(daysInMonth(date));
   return copy;
@@ -119,8 +119,8 @@ function copyDate(date) {
 module.exports = {
   previousMonth,
   daysInMonth,
-  lastDayOfMonth,
-  firstDayOfMonth,
+  lastDateOfMonth,
+  firstDateOfMonth,
   nextDay,
   firstDayOfWeek,
   lastDayOfWeek,

@@ -37,17 +37,17 @@ describe('days-array', function() {
   });
 
   it('should return first date of a month', function() {
-    expect(lib.firstDayOfMonth(new Date(2016, 2, 22))).toEqual(new Date(2016, 2, 1));
-    expect(lib.firstDayOfMonth(new Date(2016, 1, 29))).toEqual(new Date(2016, 1, 1));
-    expect(lib.firstDayOfMonth(new Date(2016, 1, 1))).toEqual(new Date(2016, 1, 1));
-    expect(lib.firstDayOfMonth(new Date(2016, 1, 20))).toEqual(new Date(2016, 1, 1));
-    expect(lib.firstDayOfMonth(new Date(2016, 1, 14))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDateOfMonth(new Date(2016, 2, 22))).toEqual(new Date(2016, 2, 1));
+    expect(lib.firstDateOfMonth(new Date(2016, 1, 29))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDateOfMonth(new Date(2016, 1, 1))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDateOfMonth(new Date(2016, 1, 20))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDateOfMonth(new Date(2016, 1, 14))).toEqual(new Date(2016, 1, 1));
   });
 
   it('should return last day of a month', function() {
-    expect(lib.lastDayOfMonth(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 31));
-    expect(lib.lastDayOfMonth(new Date(2016, 0, 31))).toEqual(new Date(2016, 0, 31));
-    expect(lib.lastDayOfMonth(new Date(2016, 2, 1))).toEqual(new Date(2016, 2, 31));
+    expect(lib.lastDateOfMonth(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 31));
+    expect(lib.lastDateOfMonth(new Date(2016, 0, 31))).toEqual(new Date(2016, 0, 31));
+    expect(lib.lastDateOfMonth(new Date(2016, 2, 1))).toEqual(new Date(2016, 2, 31));
   });
 
   it('should return previous month', function() {
@@ -68,25 +68,25 @@ describe('days-array', function() {
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 2, 31))
+        lib.lastDateOfMonth(new Date(2016, 2, 31))
       )
     ).toEqual(new Date(2016, 3, 2));
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 2, 1))
+        lib.lastDateOfMonth(new Date(2016, 2, 1))
       )
     ).toEqual(new Date(2016, 3, 2));
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 2, 19))
+        lib.lastDateOfMonth(new Date(2016, 2, 19))
       )
     ).toEqual(new Date(2016, 3, 2));
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 3, 1))
+        lib.lastDateOfMonth(new Date(2016, 3, 1))
       )
     ).toEqual(new Date(2016, 3, 30));
   });
@@ -96,25 +96,25 @@ describe('days-array', function() {
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 2, 31))
+        lib.lastDateOfMonth(new Date(2016, 2, 31))
       )
     ).toEqual(new Date(2016, 3, 3));
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 2, 1))
+        lib.lastDateOfMonth(new Date(2016, 2, 1))
       )
     ).toEqual(new Date(2016, 3, 3));
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 2, 19))
+        lib.lastDateOfMonth(new Date(2016, 2, 19))
       )
     ).toEqual(new Date(2016, 3, 3));
 
     expect(
       lib.lastDayOfWeek(
-        lib.lastDayOfMonth(new Date(2016, 3, 1))
+        lib.lastDateOfMonth(new Date(2016, 3, 1))
       )
     ).toEqual(new Date(2016, 4, 1));
   });
