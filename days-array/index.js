@@ -53,21 +53,16 @@ function nextDay(date) {
   return copy;
 }
 
-function daysArray(date) {
-  const first = firstDayOfWeek(date);
-  const last = lastDayOfWeek(lastDayOfMonth(date));
-  const dayMS = 24 * 60 * 60 * 1000;
-  const days = ((last - first) / dayMS) + 1;
-
-  const arr = Array(days);
-  arr[0] = first;
-  arr[arr.length - 1] = last;
-
-  for (var i = 1; i < days; i++) {
-    arr[i] = nextDay(arr[i - 1]);
-  }
-
-  return arr;
+/**
+ * firstDayOfMonth
+ * Returns the first date of a given month
+ * @param  {date} date Date
+ * @return {date}
+ */
+function firstDayOfMonth(date) {
+  const first = copyDate(date);
+  first.setDate(1);
+  return first;
 }
 
 /**
@@ -125,7 +120,7 @@ module.exports = {
   previousMonth,
   daysInMonth,
   lastDayOfMonth,
-  daysArray,
+  firstDayOfMonth,
   nextDay,
   firstDayOfWeek,
   lastDayOfWeek,

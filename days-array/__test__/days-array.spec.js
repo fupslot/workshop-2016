@@ -32,8 +32,15 @@ describe('days-array', function() {
     expect(lib.lastDayOfWeek(new Date(2016, 0, 24))).toEqual(new Date(2016, 0, 24));
   });
 
+  it('should return first date of a month', function() {
+    expect(lib.firstDayOfMonth(new Date(2016, 2, 22))).toEqual(new Date(2016, 2, 1));
+    expect(lib.firstDayOfMonth(new Date(2016, 1, 29))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDayOfMonth(new Date(2016, 1, 1))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDayOfMonth(new Date(2016, 1, 20))).toEqual(new Date(2016, 1, 1));
+    expect(lib.firstDayOfMonth(new Date(2016, 1, 14))).toEqual(new Date(2016, 1, 1));
+  });
 
-  it('should return last day of month', function() {
+  it('should return last day of a month', function() {
     expect(lib.lastDayOfMonth(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 31));
     expect(lib.lastDayOfMonth(new Date(2016, 0, 31))).toEqual(new Date(2016, 0, 31));
     expect(lib.lastDayOfMonth(new Date(2016, 2, 1))).toEqual(new Date(2016, 2, 31));
@@ -49,17 +56,5 @@ describe('days-array', function() {
   it('should return next day', function() {
     expect(lib.nextDay(new Date(2016, 0, 1))).toEqual(new Date(2016, 0, 2));
     expect(lib.nextDay(new Date(2016, 0, 2))).toEqual(new Date(2016, 0, 3));
-  });
-
-  it('should return day array array<Date>', function() {
-    lib.startWeekWith(lib.SUNDAY);
-    let days = lib.daysArray(new Date(2016, 0, 1));
-    expect(Array.isArray(days)).toBeTruthy();
-    expect(days.length).toEqual(42);
-
-    lib.startWeekWith(lib.MONDAY);
-    days = lib.daysArray(new Date(2016, 6, 1));
-    expect(Array.isArray(days)).toBeTruthy();
-    expect(days.length).toEqual(35);
   });
 });
