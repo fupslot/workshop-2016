@@ -2,8 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const SvgStore = require('webpack-svgstore-plugin');
-// const svgStoreOptions = require('./svgstore.options');
+const SvgStore = require('webpack-svgstore-plugin');
 
 
 module.exports = {
@@ -55,15 +54,23 @@ module.exports = {
     return [autoprefixer];
   },
   plugins: [
+    new SvgStore({
+      prefix: 'glyph-',
+      svgoOptions: {
+        plugins: [{ removeTitle: true }]
+      }
+    }),
+
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: './index.html'
     }),
-    // Note: only CSS is currently hot reloaded
-    new webpack.HotModuleReplacementPlugin()
-    // create svgStore instance object
-    // new SvgStore(svgStoreOptions)
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
   ],
+  stats: false,
   devServer: {
     hot: true
   }
