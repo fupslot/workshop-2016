@@ -1,0 +1,80 @@
+@import "../sass/core";
+
+$week-color-bg: #212121;
+$week-color: white;
+$week-color-marked: #FFAB40;
+$week-color-range: #757575;
+$week-color-hover: #424242;
+
+$week-padding: 2px;
+
+.Week {
+  font-family: Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 100;
+  line-height: 1;
+  background-color: $week-color-bg;
+  color: $week-color;
+  box-sizing: border-box;
+  display: flex;
+  padding: $week-padding;
+}
+
+.Week__day {
+  width: 32px - $week-padding;
+  height: 32px - $week-padding;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  padding: 6px 4px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: border-radius .2s ease-out, border-color .2s ease-out;
+}
+
+.Week__day {
+  &:hover {
+    background-color: $week-color-hover;
+  }
+}
+
+.Week__day--marked {
+  border-color: $week-color-marked;
+  border-radius: 50%;
+}
+
+.Week__day--start,
+.Week__day--end,
+.Week__day--in {
+  background-color: $week-color-range;
+}
+
+.Week__day--start {
+  border-radius: 50% 0 0 50%;
+  border-top-color: $week-color-marked;
+  border-left-color: $week-color-marked;
+  border-bottom-color: $week-color-marked;
+  border-right: 0px;
+}
+
+.Week__day--in {
+  border-top-color: $week-color-marked;
+  border-bottom-color: $week-color-marked;
+  border-right: 0px;
+  border-left: 0px;
+}
+
+.Week__day--end {
+  border-radius: 0 50% 50% 0;
+  border-top-color: $week-color-marked;
+  border-bottom-color: $week-color-marked;
+  border-right-color: $week-color-marked;
+  border-left: 0px;
+}
+
+.Week__day--out {
+  color: $week-color-range;
+  cursor: default;
+  pointer-events: none;
+}

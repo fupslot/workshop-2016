@@ -50,6 +50,11 @@ module.exports = {
       }
     ]
   },
+  sassLoader: {
+    includePaths: [
+      path.resolve(process.cwd(), 'node_modules')
+    ]
+  },
   postcss() {
     return [autoprefixer];
   },
