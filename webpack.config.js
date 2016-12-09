@@ -9,7 +9,8 @@ module.exports = {
   context: __dirname,
 
   entry: [
-    './index.js',
+    // './index.js',
+    './material-ui/index.js',
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080/'
   ],
