@@ -29,6 +29,8 @@
     "html-webpack-plugin": "^2.22.0",
     "jest-cli": "~15.1.1",
     "material-ui": "^0.16.4",
+    "node-config-files": "file:node-config-files",
+    "node-env-config-simple": "file:node-env-config-simple",
     "node-sass": "^3.9.3",
     "normalize-scss": "^5.0.3",
     "postcss-loader": "^0.11.1",
@@ -47,7 +49,9 @@
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest"
   },
   "devDependencies": {
+    "colors": "^1.1.2",
     "enzyme": "^2.4.1",
+    "lodash.omit": "^4.5.0",
     "react-addons-test-utils": "^15.3.1",
     "webpack-svgstore-plugin": "^3.0.4"
   }
