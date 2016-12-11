@@ -7,15 +7,17 @@
 }
 
 .card-container {
-  display: flex;
   display: -webkit-flex;
+  display: flex;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
+  justify-content: space-around;
   -webkit-justify-content: space-around;
   background-color: #fafafa;
 }
 
 .card {
+  flex: 1 1 auto;
   min-width: 230px;
   max-width: 320px;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
@@ -33,9 +35,9 @@
   font-family: Helvetica, sans-serif;
 }
 
-@media (max-width: 425px) {
+@media screen and (max-width: 425px) {
   .card {
-    min-width: 100%;
+    max-width: initial;
     margin-right: 0px;
   }
 }
