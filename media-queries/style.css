@@ -8,9 +8,11 @@
 
 .card-container {
   display: flex;
+  display: -webkit-flex;
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -webkit-justify-content: space-around;
   background-color: #fafafa;
-  justify-content: space-around;
 }
 
 .card {
