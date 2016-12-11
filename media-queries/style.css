@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.border {
-  border: 1px solid;
-}
-
 .card-container {
   display: -webkit-flex;
   display: flex;
@@ -33,6 +29,15 @@
   margin-top: 18px;
   margin-bottom: 18px;
   font-family: Helvetica, sans-serif;
+}
+
+.flexboxgrid {
+  margin: 10px;
+}
+
+.flexboxgrid .row {
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
 }
 
 @media screen and (max-width: 425px) {
