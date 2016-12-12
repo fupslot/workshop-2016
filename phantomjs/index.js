@@ -1,27 +1,26 @@
-const cheerio = require('cheerio');
-const phantom_request = require('./phantom_request');
+// const phantomRequest = require('./phantom_request');
+const curlRequest = require('./curl-request');
 
-// 'https://fupslot.github.io/workshop-2016/media-queries/index.html',
-phantom_request(
+// Shorten URLs
+// http://tinyurl.com/jcln2o2
+// https://goo.gl/sKXWhn
+// http://bit.ly/2hkWfpP
+
+const REGEX_META = /\<meta\s(?:property|name)\=["|']*(.+?)["|']*\scontent\=["|']*(.+?)["|']*\>/g;
+
+curlRequest(
   {
-    url: 'https://fupslot.github.io/workshop-2016/media-queries/index.html'
+    url: 'https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c#.997ry6lt4'
   },
   (err, data) => {
     if (err) {
       return console.log(err);
     }
-    const dom = cheerio.load(data);
 
-    const attrs = {};
-
-    dom('meta').each(function(i, node) {
-      const propName = node.attribs.name || node.attribs.property;
-      if (propName && propName.startsWith('og:')) {
-        attrs[propName] = node.attribs.content;
-      }
-    });
-
-    console.log(attrs);
+    let match;
+    while ((match = REGEX_META.exec(data)) !== null) {
+      console.log(`Name: ${match[1]} Property: ${match[2]}`);
+    }
 
     return null;
   }
