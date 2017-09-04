@@ -1,0 +1,39 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+  user-select: none;
+  user-drag: element;
+}
+
+.inline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list {
+  background-color: #fee;
+  height: 4em;
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.list .item {
+  display: flex;
+  flex: 0 0 4em;
+  border: 3px solid #cec;
+  background-color: #eef;
+  cursor: pointer;
+}
+
+.item.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.item-placeholder {
+  opacity: .4;
+}
